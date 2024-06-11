@@ -7,10 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fileInput.addEventListener('change', (event) => {
         const files = event.target.files;
-        selectedFiles = Array.from(files);
 
-        if (selectedFiles.length > 0) {
-            fileInfo.textContent = `Selected files: ${selectedFiles.map(file => file.name).join(', ')}`;
+        if (files.length > 0) {
+            selectedFiles = Array.from(files);
+            fileInfo.textContent = `Selected file(s): ${selectedFiles.map(file => file.name).join(', ')}`;
             downloadButton.style.display = 'inline-block';
         } else {
             fileInfo.textContent = 'No file selected';
@@ -19,26 +19,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     downloadButton.addEventListener('click', () => {
-        if (selectedFiles.length > 0) {
-            selectedFiles.forEach((file) => {
-                let fileName = file.name;
-                fileName = fileName.replace(/^order_\s*/i, ''); 
-                fileName = fileName.replace(/\.[^/.]+$/, "") + ".zip"; 
+        selectedFiles.forEach(selectedFile => {
+            const fileNameWithoutOrder = selectedFile.name.replace(/^order_/i, "");
+            const newFileName = fileNameWithoutOrder.replace(/\.[^/.]+$/, "") + ".zip";
+            const blob = new Blob([selectedFile], { type: "application/zip" });
+            const url = URL.createObjectURL(blob);
 
-                const zip = new JSZip();
-                zip.file(file.name, file);
-
-                zip.generateAsync({ type: "blob" }).then((blob) => {
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = fileName;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
-                });
-            });
-        }
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = newFileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
     });
 });
