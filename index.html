@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./fontawesome-free-6.5.2-web/css/all.min.css">
+    <link rel="stylesheet" href="./bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
+
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="container-fluid my-bg p-0">
+
+        <div class="row">
+
+            <div class="col-5">
+
+                <div class="my-box ps-5 vh-100 d-flex justify-content-center align-items-center flex-column">
+
+                    <input type="file" id="fileInput" class="form-control mb-5" multiple />
+
+                <button class="button d-flex" id="downloadButton">
+                    <div class="box">D</div>
+                    <div class="box">A</div>
+                    <div class="box">M</div>
+                    <div class="box">O</div>
+                    <div class="box">M</div>
+                    <div class="d-flex justify-content-center align-items-center w-25 text-center dow"><i class="fa-solid fa-download"></i></div>
+                </button>
+
+                
+                <div id="fileInfo" class="text-white pt-2"></div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+
+    <script src="./bootstrap.bundle.min.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
