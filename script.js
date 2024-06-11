@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fileInput.addEventListener('change', (event) => {
         const files = event.target.files;
-        selectedFiles = Array.from(files); 
+        selectedFiles = Array.from(files);
 
         if (selectedFiles.length > 0) {
             fileInfo.textContent = `Selected files: ${selectedFiles.map(file => file.name).join(', ')}`;
@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (selectedFiles.length > 0) {
             selectedFiles.forEach((file) => {
                 let fileName = file.name;
-                fileName = fileName.replace(/^order\s*/i, ''); // Remove "order" or "ORDER" if it is the first word
-                fileName = fileName.replace(/\.[^/.]+$/, "") + ".zip"; // Change the extension to .zip
+                fileName = fileName.replace(/^order_\s*/i, ''); 
+                fileName = fileName.replace(/\.[^/.]+$/, "") + ".zip"; 
 
                 const zip = new JSZip();
                 zip.file(file.name, file);
