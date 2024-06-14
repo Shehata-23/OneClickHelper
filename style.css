@@ -83,7 +83,7 @@ body {
 
 .box:nth-child(6)::before {
   background: url('/ng.png') #0f0f0f; 
-  background-position: left;
+  background-position: bottom 10px left -1px;
   background-size: contain;
   background-repeat: no-repeat;
   transform: translateY(-100%);

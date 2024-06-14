@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     downloadButton.addEventListener('click', () => {
         selectedFiles.forEach(selectedFile => {
-            const fileNameWithoutOrder = selectedFile.name.replace(/^order_/i, "");
+            const fileNameWithoutOrder = selectedFile.name.replace(/^order[_\s]?/i, "");
             const newFileName = fileNameWithoutOrder.replace(/\.[^/.]+$/, "") + ".zip";
             const blob = new Blob([selectedFile], { type: "application/zip" });
             const url = URL.createObjectURL(blob);
